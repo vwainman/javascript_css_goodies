@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+</head>
+
+<body>
+  <canvas id="draw" width="800" height="800"></canvas>
+  <script>
+    function randomIntFromInterval(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+    const canvas = document.querySelector('#draw');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+
+    let x = canvas.width / 2;
+    let y = canvas.height / 2;
+    let hue = 0;
+    let velo = 3;
+    let moveX = Math.cos(Math.PI / 180) * velo;
+    let moveY = Math.sin(Math.PI / 180) * velo;
+
+    ctx.strokeStyle = 'red';
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.lineWidth = 25;
+
+
+    setInterval(function () {
+
+      if (x > canvas.width || x < 0) {
+        moveX = -moveX;
+        velo = randomIntFromInterval(3, 6);
+        moveY = Math.sin(randomIntFromInterval(-180, 180) * Math.PI / 180) * velo;
+        ctx.lineWidth = randomIntFromInterval(10, 50);
+      }
+
+      if (y > canvas.height || y < 0) {
+        moveY = -moveY;
+        velo = randomIntFromInterval(3, 6);
+        moveX = Math.cos(randomIntFromInterval(-180, 180) * Math.PI / 180) * velo;
+        ctx.lineWidth = randomIntFromInterval(10, 50);
+      }
+
+      x += moveX;
+      y += moveY;
+      ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+      hue++;
+      if (hue >= 360) {
+        hue = 0;
+      }
+
+      ctx.beginPath();
+      ctx.lineTo(x, y);
+      ctx.stroke();
+    }, 10);
+  </script>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+    }
+  </style>
+
+</body>
+
+</html>
