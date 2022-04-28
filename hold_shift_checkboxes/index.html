@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hold Shift to Check/Uncheck Multiple Checkboxes</title>
+</head>
+
+<body>
+    <style>
+        .item {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #F1F1F1;
+        }
+
+        input:checked+p {
+            background: #F9F9F9;
+            text-decoration: line-through;
+        }
+
+        input[type="checkbox"] {
+            margin: 20px;
+        }
+    </style>
+    <div class="inbox">
+        <div class="item">
+            <input type="checkbox">
+            <p>Check an item</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Hold shift</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Check another item to cascade checks</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Repeat in reverse to cascade undo checks</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Note that undos can only occur on previously checked boxes</p>
+        </div>
+
+    </div>
+
+    <script>
+        function cascadeBoxShiftCheck(e) {
+            // if shift is held down, check or uncheck
+            // all boxes between this and the previous box
+            let boxInBetweenCheckedBoxes = false;
+            if (e.shiftKey && this.checked && lastChecked !== this) {
+                checkBoxes.forEach(checkBox => {
+                    isCheckBoxBound = (checkBox === this || checkBox === lastChecked);
+                    if (isCheckBoxBound) {
+                        boxInBetweenCheckedBoxes = !boxInBetweenCheckedBoxes;
+                    }
+                    if (boxInBetweenCheckedBoxes) {
+                        checkBox.checked = true;
+                    }
+                });
+            }
+            else if (e.shiftKey && !this.checked) {
+                checkBoxes.forEach(checkBox => {
+                    isCheckBoxBound = (checkBox === this || checkBox === lastChecked);
+                    if (isCheckBoxBound) {
+                        boxInBetweenCheckedBoxes = !boxInBetweenCheckedBoxes;
+                    }
+                    if (boxInBetweenCheckedBoxes || checkBox === lastChecked) {
+                        checkBox.checked = false;
+                    }
+                })
+            }
+            lastChecked = this;
+        }
+
+        let lastChecked;
+
+        const checkBoxes = document.querySelectorAll(`.inbox input[type="checkbox"]`);
+        checkBoxes.forEach(box => {
+            box.addEventListener('click', cascadeBoxShiftCheck)
+        });
+
+
+    </script>
+</body>
+
+</html>
