@@ -5,3 +5,4 @@ A centralized compilation of tweaked javascript/css projects that I've adapted f
 1. [Instrument keys](https://vwainman.github.io/javascript_css_goodies/instrument_keys/index.html)
 2. [Canvas screen saver](https://vwainman.github.io/javascript_css_goodies/html5_canvas/index.html)
 3. [Check/uncheck boxes](https://vwainman.github.io/javascript_css_goodies/hold_shift_checkboxes/index.html)
+4. [Event delegation checkbox form](https://vwainman.github.io/javascript_css_goodies/check_form_localstorage/index.html)
