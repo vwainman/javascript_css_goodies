@@ -6,3 +6,4 @@ A centralized compilation of tweaked javascript/css projects that I've adapted f
 2. [Canvas screen saver](https://vwainman.github.io/javascript_css_goodies/html5_canvas/index.html)
 3. [Check/uncheck boxes](https://vwainman.github.io/javascript_css_goodies/hold_shift_checkboxes/index.html)
 4. [Event delegation checkbox form](https://vwainman.github.io/javascript_css_goodies/check_form_localstorage/index.html)
+5. [Follow the links - rabbit game](https://vwainman.github.io/javascript_css_goodies/follow_the_links/index.html)
